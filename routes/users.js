@@ -2,8 +2,21 @@ var express = require('express');
 var router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.post('/', function(req, res, next) {
+
+  const sql = require("../db.js");
+
+
+  sql.query("SELECT COUNT(*) AS sayi FROM users WHERE ref='"+req.param('ref')+"'",function (err,rows) {
+    if (err) throw err;
+    console.log(rows);
+
+    res.send(rows);
+  });
+
+
+
+
 });
 
 module.exports = router;
