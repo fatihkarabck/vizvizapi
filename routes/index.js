@@ -9,7 +9,7 @@ router.post('/', function(req, res, next) {
 
 
 
-    sql.query("INSERT INTO users SET name='"+req.param('name')+"',email='"+req.param('email')+"',tel='"+req.param('tel')+"',pass='"+req.param('pass')+"',plaka='"+req.param('plaka')+"',type='"+req.param('type')+"'");
+    sql.query("INSERT INTO users SET name='"+req.param('name')+"',email='"+req.param('email')+"',tel='"+req.param('tel')+"',pass='"+req.param('pass')+"',plaka='"+req.param('plaka')+"',type='"+req.param('type')+"',ref='"+req.param('ref')+"'");
 
 
 
