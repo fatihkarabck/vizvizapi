@@ -9,10 +9,10 @@ router.post('/', function(req, res, next) {
 
     sql.query("SELECT userid FROM users WHERE tel='"+req.param('tel')+"' AND pass='"+req.param("pass")+"'",function (err, result, fields) {
         if (err) throw err;
-let ress=result[0];
-        console.log(ress.userid);
+let refs=result[0];
+        console.log(refs.userid);
 
-        if (ress.userid){getlist(ress.userid)}
+        if (parseInt(refs.userid)>0){getlist(refs.userid)}else{res.send("0");}
     });
 
 function getlist(referance) {
