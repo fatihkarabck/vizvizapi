@@ -11,7 +11,7 @@ router.post('/', function(req, res, next) {
     if (err) throw err;
     console.log(rows);
 
-    res.send(rows);
+    res.send(rows[0]);
   });
 
 
