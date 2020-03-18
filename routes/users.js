@@ -7,7 +7,7 @@ router.post('/', function(req, res, next) {
   const sql = require("../db.js");
 
 
-  sql.query("SELECT COUNT(*) AS sayi FROM users WHERE ref='"+req.param('ref')+"'",function (err,rows) {
+  sql.query("SELECT COUNT(*) AS sayi FROM users WHERE userid="+req.param('ref')+"",function (err,rows) {
     if (err) throw err;
     console.log(rows);
 
