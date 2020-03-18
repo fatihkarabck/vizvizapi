@@ -5,18 +5,30 @@ var router = express.Router();
 router.post('/', function(req, res, next) {
 
   const sql = require("../db.js");
-
-
-
-
-    sql.query("INSERT INTO users SET name='"+req.param('name')+"',email='"+req.param('email')+"',tel='"+req.param('tel')+"',pass='"+req.param('pass')+"',plaka='"+req.param('plaka')+"',type='"+req.param('type')+"',ref='"+req.param('ref')+"'");
-
-  sql.query("SELECT userid FROM users WHERE tel='"+req.param('tel')+"' AND email='"+req.param("email")+"'",function (err,rows) {
+  sql.query("SELECT userid FROM users WHERE tel='"+req.param('tel')+"' OR email='"+req.param("email")+"'",function (err,rows) {
     if (err) throw err;
     console.log(rows);
 
-    res.send(rows[0]);
+   if(rows[0])
+   {
+     res.send("BU BİLGİLER İLE KAYIT VAR");
+   }else
+     {
+       console.log("yok")
+       sql.query("INSERT INTO users SET name='"+req.param('name')+"',email='"+req.param('email')+"',tel='"+req.param('tel')+"',pass='"+req.param('pass')+"',plaka='"+req.param('plaka')+"',type='"+req.param('type')+"',ref='"+req.param('ref')+"'");
+
+       sql.query("SELECT userid FROM users WHERE tel='"+req.param('tel')+"' AND email='"+req.param("email")+"'",function (err,rows) {
+         if (err) throw err;
+         console.log(rows);
+
+         res.send(rows[0]);
+       });
+
+     }
   });
+
+
+
 
 
   
