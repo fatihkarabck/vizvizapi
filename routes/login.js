@@ -9,10 +9,18 @@ router.post('/', function(req, res, next) {
 
     sql.query("SELECT userid FROM users WHERE tel='"+req.param('tel')+"' AND pass='"+req.param("pass")+"'",function (err, result, fields) {
         if (err) throw err;
-let refs=result[0];
-        console.log(refs.userid);
 
-        if (parseInt(refs.userid)>0){getlist(refs.userid)}else{res.send("0");}
+            let refs = result[0];
+            console.log(refs);
+        if (refs) {
+            console.log(refs.userid);
+
+            if (parseInt(refs.userid) > 0) {
+                getlist(refs.userid)
+            } else {
+                res.send("0");
+            }
+        }else{res.send("KULLANICI BULUNAMADI LÜTFEN GİRİŞ YAPINIZ");}
     });
 
 function getlist(referance) {
