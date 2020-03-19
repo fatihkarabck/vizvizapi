@@ -6,11 +6,11 @@ router.post('/', function(req, res, next) {
 
     const sql = require("../db.js");
 
-
+    let refs;
     sql.query("SELECT userid FROM users WHERE tel='"+req.param('tel')+"' AND pass='"+req.param("pass")+"'",function (err, result, fields) {
         if (err) throw err;
 
-            let refs = result[0];
+             refs = result[0];
             console.log(refs);
         if (refs) {
             console.log(refs.userid);
@@ -24,11 +24,12 @@ router.post('/', function(req, res, next) {
     });
 
 function getlist(referance) {
+    console.log("önce"+referance);
     sql.query("SELECT * FROM users WHERE ref='"+referance+"'",function (err,rows) {
-        if (err) throw err;
-        console.log(rows);
 
-        res.send(rows);
+        console.log("sonra"+rows);
+if (rows[0]){
+    console.log("dolu");res.send(rows[0]);}else{ console.log("boş"+refs.userid);res.send(refs.userid+""); }
     });
 
 }
