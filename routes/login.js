@@ -29,7 +29,7 @@ function getlist(referance) {
 
         console.log("sonra"+rows);
 if (rows[0]){
-    console.log("dolu");res.send(rows[0]);}else{ console.log("boş"+refs.userid);res.send(refs.userid+""); }
+    console.log("dolu");res.send(rows);}else{ console.log("boş"+refs.userid);res.send(refs.userid+""); }
     });
 
 }
